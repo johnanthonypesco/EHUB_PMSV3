@@ -1,6 +1,5 @@
-import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { LogOut, Shield, Crown } from 'lucide-react';
+import { Shield, Crown } from 'lucide-react';
 import { User } from '../../types';
 import { CompanyLogo } from '../ui/company-logo';
 import { ThemeToggle } from '../ui/theme-toggle';
@@ -14,7 +13,7 @@ interface HeaderProps {
   isTransitioning?: boolean;
 }
 
-export function Header({ currentUser, onLogout, currentTheme, onThemeChange, isTransitioning }: HeaderProps) {
+export function Header({ currentUser, currentTheme, onThemeChange, isTransitioning }: HeaderProps) {
   const getRoleIcon = () => {
     switch (currentUser.role) {
       case 'admin':
@@ -46,7 +45,7 @@ export function Header({ currentUser, onLogout, currentTheme, onThemeChange, isT
   return (
     <header className="flex items-center justify-between px-6 py-3 bg-card border-b shadow-sm">
       <div className="flex items-center gap-4">
-        <SidebarTrigger />
+        <SidebarTrigger className='cursor-pointer'/>
         <CompanyLogo size="md" showText={true} clickable={true} />
       </div>
 
@@ -69,16 +68,6 @@ export function Header({ currentUser, onLogout, currentTheme, onThemeChange, isT
             </div>
           </div>
         </div>
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onLogout}
-          className="ml-2 border-border hover:bg-destructive hover:text-destructive-foreground"
-        >
-          <LogOut className="h-4 w-4 mr-2" />
-          Logout
-        </Button>
       </div>
     </header>
   );
